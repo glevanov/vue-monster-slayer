@@ -6,5 +6,12 @@ new Vue({
       monster: 100
     },
     gameIsRunning: false
+  },
+  methods: {
+    startGame: function () {
+      this.gameIsRunning = true;
+      this.health.player = 100;
+      this.health.monster = 100;
+    }
   }
 })
