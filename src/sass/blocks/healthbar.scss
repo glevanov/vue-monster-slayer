@@ -1,8 +1,35 @@
 .healthbar {
   width: 100%;
+  margin-bottom: 15px;
 }
 
 .healthbar__wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.healthbar__scale {
   border: 1px solid white;
   height: 30px;
+  width: 100%;
+}
+
+.healthbar__bar {
+  width: 70%;
+  height: 100%;
+  background-color: $color-healthbar-player;
+
+  &--monster {
+    background-color: $color-healthbar-monster;
+  }
+}
+
+.healthbar__text {
+  margin: 0;
+  font-size: 26px;
+  font-weight: normal;
+
+  &--health {
+    font-weight: bold;
+  }
 }
