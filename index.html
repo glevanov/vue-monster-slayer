@@ -15,9 +15,9 @@
         <div
           class="healthbar text-center"
           style="background-color: green; margin: 0; color: white;"
-          :style="{width: health.player + '%'}"
+          :style="{width: player.health + '%'}"
         >
-          {{ health.player }}
+          {{ player.health }}
         </div>
       </div>
     </div>
@@ -27,9 +27,9 @@
         <div
           class="healthbar text-center"
           style="background-color: green; margin: 0; color: white;"
-          :style="{width: health.monster + '%'}"
+          :style="{width: monster.health + '%'}"
         >
-          {{ health.monster }}
+          {{ monster.health }}
         </div>
       </div>
     </div>

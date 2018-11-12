@@ -1,6 +1,24 @@
 new Vue({
   el: '#app',
   data: {
+    player: {
+      health: 100,
+      attack: {
+        min: 1,
+        max: 10
+      },
+      special: {
+        min: 8,
+        max: 20
+      }
+    },
+    monster: {
+      health: 100,
+      attack: {
+        min: 2,
+        max: 13
+      }
+    },
     health: {
       player: 100,
       monster: 100
@@ -10,16 +28,22 @@ new Vue({
   methods: {
     startGame: function () {
       this.gameIsRunning = true;
-      this.health.player = 100;
-      this.health.monster = 100;
+      this.player.health = 100;
+      this.monster.health = 100;
     },
     attack: function () {
-      this.health.monster -= this.calculateDamage(1, 15);
+      this.monster.health -= this.calculateDamage(
+        this.player.attack.min,
+        this.player.attack.max
+      );
       if (this.checkVictory()) {
         return;
       }
 
-      this.health.player -= this.calculateDamage(3, 17);
+      this.player.health -= this.calculateDamage(
+        this.monster.attack.min,
+        this.monster.attack.max
+      );
       this.checkVictory();
     },
     specialAttack: function () {
@@ -35,14 +59,14 @@ new Vue({
       return Math.floor(Math.random() + maxDamage - minDamage) + minDamage;
     },
     checkVictory: function () {
-      if (this.health.monster <= 0) {
+      if (this.monster.health <= 0) {
         if (confirm('Victory! Do you want to start a New Game?')) {
           this.startGame();
         } else {
           this.gameIsRunning = false;
         }
         return true;
-      } else if (this.health.player <= 0) {
+      } else if (this.player.health <= 0) {
         if (confirm('Defeat! Do you want to start a New Game?')) {
           this.startGame();
         } else {
