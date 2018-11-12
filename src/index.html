@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monster Slayer</title>
+</head>
+<body>
+<div id="app">
+  <h1>Monster Slayer</h1>
+
+  <section class="healthbar">
+    <h2 class="healthbar__heading">Player</h2>
+    <div class="healthbar__wrap">
+      <div class="healthbar__bar"></div>
+    </div>
+    <p class="healthbar__health-text">100</p>
+  </section>
+
+  <section class="healthbar">
+    <h2 class="healthbar__heading">Monster</h2>
+    <div class="healthbar__wrap">
+      <div class="healthbar__bar"></div>
+    </div>
+    <p class="healthbar__health-text">100</p>
+  </section>
+
+  <section class="actions">
+    <h2 class="actions__heading">Actions</h2>
+    <ul class="actions__list">
+      <li>
+        <button class="button button--attack">
+          <i class="icon icon--attack"></i> <span>Attack</span>
+        </button>
+      </li>
+      <li>
+        <button class="button button--special">
+          <i class="icon icon--special"></i> <span>Special</span>
+        </button>
+      </li>
+      <li>
+        <button class="button button--heal">
+          <i class="icon icon--heal"></i> <span>Heal</span>
+        </button>
+      </li>
+      <li>
+        <button class="button button--give-up">
+          <i class="icon icon--give-up"></i> <span>Give Up</span>
+        </button>
+      </li>
+    </ul>
+  </section>
+
+  <section class="log">
+    <ul class="log__list">
+      <li class="log__item">
+        <p class="log__player">Player hits monster...</p>
+        <p class="log__monster">Monster hist player...</p>
+      </li>
+    </ul>
+  </section>
+
+</div>
+</body>
+</html>
