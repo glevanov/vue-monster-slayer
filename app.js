@@ -10,7 +10,8 @@ new Vue({
       special: {
         min: 8,
         max: 20
-      }
+      },
+      heal: 15
     },
     monster: {
       health: 100,
@@ -18,10 +19,6 @@ new Vue({
         min: 2,
         max: 13
       }
-    },
-    health: {
-      player: 100,
-      monster: 100
     },
     gameIsRunning: false
   },
@@ -32,33 +29,32 @@ new Vue({
       this.monster.health = 100;
     },
     attack: function () {
-      this.monster.health -= this.calculateDamage(
+      this._attackPhase(
         this.player.attack.min,
         this.player.attack.max
       );
-      if (this.checkVictory()) {
-        return;
-      }
-
-      this.player.health -= this.calculateDamage(
-        this.monster.attack.min,
-        this.monster.attack.max
-      );
-      this.checkVictory();
     },
     specialAttack: function () {
-      
+      this._attackPhase(
+        this.player.special.min,
+        this.player.special.max
+      );
     },
     heal: function () {
-      
+      if (this.player.health <= 100 - this.player.heal) {
+        this.player.health += this.player.heal;
+      } else {
+        this.player.health = 100;
+      }
+      this._monsterAttack();
     },
     giveUp: function () {
       
     },
-    calculateDamage: function (minDamage, maxDamage) {
+    _calculateDamage: function (minDamage, maxDamage) {
       return Math.floor(Math.random() + maxDamage - minDamage) + minDamage;
     },
-    checkVictory: function () {
+    _checkVictory: function () {
       if (this.monster.health <= 0) {
         if (confirm('Victory! Do you want to start a New Game?')) {
           this.startGame();
@@ -75,6 +71,20 @@ new Vue({
         return true;
       }
       return false;
+    },
+    _monsterAttack: function () {
+      this.player.health -= this._calculateDamage(
+        this.monster.attack.min,
+        this.monster.attack.max
+      );
+      this._checkVictory();
+    },
+    _attackPhase: function (playerMin, playerMax) {
+      this.monster.health -= this._calculateDamage(playerMin, playerMax);
+      if (this._checkVictory()) {
+        return;
+      }
+      this._monsterAttack();
     }
   }
 })
