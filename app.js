@@ -1,90 +1,87 @@
 new Vue({
   el: '#app',
   data: {
-    player: {
-      health: 100,
-      attack: {
-        min: 1,
-        max: 10
-      },
-      special: {
-        min: 8,
-        max: 20
-      },
-      heal: 15
-    },
-    monster: {
-      health: 100,
-      attack: {
-        min: 2,
-        max: 13
-      }
-    },
-    gameIsRunning: false
+    playerHealth: 100,
+    monsterHealth: 100,
+    gameIsRunning: false,
+    turns: []
   },
   methods: {
     startGame: function () {
-      this.gameIsRunning = true;
-      this.player.health = 100;
-      this.monster.health = 100;
+      this.gameIsRunning = true
+      this.playerHealth = 100
+      this.monsterHealth = 100
+      this.turns = []
     },
     attack: function () {
-      this._attackPhase(
-        this.player.attack.min,
-        this.player.attack.max
-      );
+      var damage = this.calculateDamage(3, 10)
+      this.monsterHealth -= damage
+      this.turns.unshift({
+        isPlayer: true,
+        text: 'Player hits Monster for ' + damage
+      })
+      if (this.checkWin()) {
+        return
+      }
+
+      this.monsterAttacks()
     },
     specialAttack: function () {
-      this._attackPhase(
-        this.player.special.min,
-        this.player.special.max
-      );
+      var damage = this.calculateDamage(10, 20)
+      this.monsterHealth -= damage
+      this.turns.unshift({
+        isPlayer: true,
+        text: 'Player hits Monster hard for ' + damage
+      })
+      if (this.checkWin()) {
+        return
+      }
+      this.monsterAttacks()
     },
     heal: function () {
-      if (this.player.health <= 100 - this.player.heal) {
-        this.player.health += this.player.heal;
+      if (this.playerHealth <= 90) {
+        this.playerHealth += 10
       } else {
-        this.player.health = 100;
+        this.playerHealth = 100
       }
-      this._monsterAttack();
+      this.turns.unshift({
+        isPlayer: true,
+        text: 'Player heals for 10'
+      })
+      this.monsterAttacks()
     },
     giveUp: function () {
-      this.gameIsRunning = false;
+      this.gameIsRunning = false
     },
-    _calculateDamage: function (minDamage, maxDamage) {
-      return Math.floor(Math.random() + maxDamage - minDamage) + minDamage;
+    monsterAttacks: function () {
+      var damage = this.calculateDamage(5, 12)
+      this.playerHealth -= damage
+      this.checkWin()
+      this.turns.unshift({
+        isPlayer: false,
+        text: 'Monster hits Player for ' + damage
+      })
     },
-    _checkVictory: function () {
-      if (this.monster.health <= 0) {
-        if (confirm('Victory! Do you want to start a New Game?')) {
-          this.startGame();
+    calculateDamage: function (min, max) {
+      return Math.max(Math.floor(Math.random() * max) + 1, min)
+    },
+    checkWin: function () {
+      if (this.monsterHealth <= 0) {
+        if (confirm('You won! New Game?')) {
+          this.startGame()
         } else {
-          this.gameIsRunning = false;
+          this.gameIsRunning = false
         }
-        return true;
-      } else if (this.player.health <= 0) {
-        if (confirm('Defeat! Do you want to start a New Game?')) {
-          this.startGame();
+        return true
+      } else if (this.playerHealth <= 0) {
+        if (confirm('You lost! New Game?')) {
+          this.startGame()
         } else {
-          this.gameIsRunning = false;
+          this.gameIsRunning = false
         }
-        return true;
+        return true
       }
-      return false;
-    },
-    _monsterAttack: function () {
-      this.player.health -= this._calculateDamage(
-        this.monster.attack.min,
-        this.monster.attack.max
-      );
-      this._checkVictory();
-    },
-    _attackPhase: function (playerMin, playerMax) {
-      this.monster.health -= this._calculateDamage(playerMin, playerMax);
-      if (this._checkVictory()) {
-        return;
-      }
-      this._monsterAttack();
+      return false
     }
   }
 })
