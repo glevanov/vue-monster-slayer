@@ -11,6 +11,9 @@ new Vue({
   methods: {
     startGame() {
       this.isRunning = true;
+    },
+    giveUp() {
+      this.isRunning = false;
     }
   }
 });

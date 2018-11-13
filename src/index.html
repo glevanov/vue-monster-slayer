@@ -35,21 +35,23 @@
 
     <section class="actions">
       <h2 class="visually-hidden">Actions</h2>
-      <button class="button button--start" @click="startGame">
+      <button class="button button--start" @click="startGame" v-if="!isRunning">
         <i class="icon icon--attack"></i> <span>Start</span>
       </button>
-      <button class="button button--attack" @click="attack">
-        <i class="icon icon--attack"></i> <span>Attack</span>
-      </button>
-      <button class="button button--special" @click="special">
-        <i class="icon icon--special"></i> <span>Special</span>
-      </button>
-      <button class="button button--heal" @click="heal">
-        <i class="icon icon--heal"></i> <span>Heal</span>
-      </button>
-      <button class="button button--give-up" @click="giveUp">
-        <i class="icon icon--give-up"></i> <span>Give Up</span>
-      </button>
+      <template v-if="isRunning">
+        <button class="button button--attack" @click="attack">
+          <i class="icon icon--attack"></i> <span>Attack</span>
+        </button>
+        <button class="button button--special" @click="special">
+          <i class="icon icon--special"></i> <span>Special</span>
+        </button>
+        <button class="button button--heal" @click="heal">
+          <i class="icon icon--heal"></i> <span>Heal</span>
+        </button>
+        <button class="button button--give-up" @click="giveUp">
+          <i class="icon icon--give-up"></i> <span>Give Up</span>
+        </button>
+      </template>
     </section>
 
     <section class="log">
