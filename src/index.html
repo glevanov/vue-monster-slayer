@@ -35,10 +35,20 @@
 
     <section class="actions">
       <h2 class="visually-hidden">Actions</h2>
+
+      <section class="actions__endgame-wrap" v-if="isFinished">
+        <p class="actions__message">{{ endGameMessage }}</p>
+        <div class="actions__endgame-buttons">
+          <button class="button" @click="startGame">Yes</button>
+          <button class="button" @click="giveUp">No</button>
+        </div>
+      </section>
+
       <button class="button button--start" @click="startGame" v-if="!isRunning">
         <i class="icon icon--attack"></i> <span>Start</span>
       </button>
-      <template v-if="isRunning">
+
+      <template v-if="isRunning && !isFinished">
         <button class="button button--attack" @click="attack">
           <i class="icon icon--attack"></i> <span>Attack</span>
         </button>
