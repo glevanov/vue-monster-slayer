@@ -7,11 +7,48 @@
   font-size: 20px;
   padding-top: 2%;
   padding-bottom: 2%;
+  outline-color: $color-highlight;
 
-  &--start {
+  &:active {
+    background-color: lighten($color-highlight, 50%);
+    color: $color-highlight;
+    border-color: $color-highlight;
+  }
+
+    &--start {
     width: 100%;
     padding-top: 5%;
     padding-bottom: 5%;
     font-size: 28px;
+
+      &:active {
+        background-color: lighten($color-healthbar-player, 30%);
+        color: $color-healthbar-player;
+        border-color: $color-healthbar-player;
+      }
+    }
+
+  &--attack {
+    &:active {
+      background-color: lighten($color-attack, 30%);
+      color: $color-attack;
+      border-color: $color-attack;
+    }
+  }
+
+  &--special {
+    &:active {
+      background-color: lighten($color-special, 30%);
+      color: $color-special;
+      border-color: $color-special;
+    }
+  }
+
+  &--heal {
+    &:active {
+      background-color: lighten($color-healthbar-player, 30%);
+      color: $color-healthbar-player;
+      border-color: $color-healthbar-player;
+    }
   }
 }

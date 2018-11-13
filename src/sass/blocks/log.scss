@@ -6,9 +6,9 @@
 
 .log__item {
   &--player {
-    color: $color-healthbar-player;
+    color: lighten($color-healthbar-player, 30%);
   }
   &--monster {
-    color: $color-healthbar-monster;
+    color: lighten($color-healthbar-monster, 30%);
   }
 }
