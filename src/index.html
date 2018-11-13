@@ -13,10 +13,10 @@
     <section class="healthbar">
       <div class="healthbar__wrap">
         <div class="healthbar__scale">
-          <div class="healthbar__bar"></div>
+          <div class="healthbar__bar" :style="{width: playerHealth + '%'}"></div>
         </div>
         <p class="healthbar__text">
-          Player: <span class="healthbar__text--health">100</span>
+          Player: <span class="healthbar__text--health">{{ playerHealth }}</span>
         </p>
 
       </div>
@@ -25,29 +25,29 @@
     <section class="healthbar">
       <div class="healthbar__wrap">
         <div class="healthbar__scale">
-          <div class="healthbar__bar healthbar__bar--monster"></div>
+          <div class="healthbar__bar healthbar__bar--monster" :style="{width: monsterHealth + '%'}"></div>
         </div>
         <p class="healthbar__text">
-          Monster: <span class="healthbar__text--health">100</span>
+          Monster: <span class="healthbar__text--health">{{ monsterHealth }}</span>
         </p>
       </div>
     </section>
 
     <section class="actions">
       <h2 class="visually-hidden">Actions</h2>
-      <button class="button button--start">
+      <button class="button button--start" @click="startGame">
         <i class="icon icon--attack"></i> <span>Start</span>
       </button>
-      <button class="button button--attack">
+      <button class="button button--attack" @click="attack">
         <i class="icon icon--attack"></i> <span>Attack</span>
       </button>
-      <button class="button button--special">
+      <button class="button button--special" @click="special">
         <i class="icon icon--special"></i> <span>Special</span>
       </button>
-      <button class="button button--heal">
+      <button class="button button--heal" @click="heal">
         <i class="icon icon--heal"></i> <span>Heal</span>
       </button>
-      <button class="button button--give-up">
+      <button class="button button--give-up" @click="giveUp">
         <i class="icon icon--give-up"></i> <span>Give Up</span>
       </button>
     </section>

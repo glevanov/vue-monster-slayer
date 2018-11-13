@@ -2,7 +2,7 @@
   "name": "vue-monster-slayer",
   "version": "1.0.0",
   "description": "This game is based on project No.1 from [Vue JS 2 - The Complete Guide](https://www.udemy.com/vuejs-2-the-complete-guide/) course.",
-  "main": "vue.js",
+  "main": "src/js/vue.js",
   "scripts": {
     "build": "webpack --env=prod --color",
     "start": "webpack-dev-server --env=dev --color --open"
@@ -39,5 +39,6 @@
     "webpack-cli": "3.1.2",
     "webpack-dev-server": "3.1.10",
     "webpack-merge": "4.1.4"
-  }
+  },
+  "dependencies": {}
 }
