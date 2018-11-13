@@ -6,7 +6,8 @@ new Vue({
   data: {
     playerHealth: 100,
     monsterHealth: 100,
-    isRunning: false
+    isRunning: false,
+    log: []
   },
   methods: {
     startGame() {
