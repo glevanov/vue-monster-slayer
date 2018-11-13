@@ -1,0 +1,14 @@
+.log__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.log__item {
+  &--player {
+    color: $color-healthbar-player;
+  }
+  &--monster {
+    color: $color-healthbar-monster;
+  }
+}
