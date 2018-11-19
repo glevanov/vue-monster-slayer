@@ -11,25 +11,27 @@
     <h1 class="title">Monster Slayer</h1>
 
     <section class="healthbar">
-      <div class="healthbar__wrap">
-        <div class="healthbar__scale">
-          <div class="healthbar__bar" :style="{width: playerHealth + '%'}"></div>
-        </div>
-        <p class="healthbar__text">
-          Player: <span class="healthbar__text--health">{{ playerHealth }}</span>
-        </p>
+      <div class="healthbar__group">
+        <div class="healthbar__wrap">
+          <div class="healthbar__scale">
+            <div class="healthbar__bar" :style="{width: playerHealth + '%'}"></div>
+          </div>
+          <p class="healthbar__text">
+            Player: <span class="healthbar__text--health">{{ playerHealth }}</span>
+          </p>
 
+        </div>
       </div>
-    </section>
 
-    <section class="healthbar">
-      <div class="healthbar__wrap">
-        <div class="healthbar__scale">
-          <div class="healthbar__bar healthbar__bar--monster" :style="{width: monsterHealth + '%'}"></div>
+      <div class="healthbar__group">
+        <div class="healthbar__wrap">
+          <div class="healthbar__scale">
+            <div class="healthbar__bar healthbar__bar--monster" :style="{width: monsterHealth + '%'}"></div>
+          </div>
+          <p class="healthbar__text">
+            Monster: <span class="healthbar__text--health">{{ monsterHealth }}</span>
+          </p>
         </div>
-        <p class="healthbar__text">
-          Monster: <span class="healthbar__text--health">{{ monsterHealth }}</span>
-        </p>
       </div>
     </section>
 

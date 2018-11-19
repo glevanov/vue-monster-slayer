@@ -1,3 +1,11 @@
 .wrapper {
   margin: 10px;
 }
+
+@media (min-width: $width-desktop) {
+  .wrapper {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

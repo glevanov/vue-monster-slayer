@@ -1,5 +1,9 @@
 .healthbar {
   width: 100%;
+}
+
+.healthbar__group {
+  width: 100%;
   margin-bottom: 10px;
 }
 
@@ -31,5 +35,17 @@
 
   &--health {
     font-weight: bold;
+  }
+}
+
+@media (min-width: $width-tablet) {
+  .healthbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .healthbar__group:first-of-type {
+    margin-right: 20px;
   }
 }
